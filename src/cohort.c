@@ -257,6 +257,34 @@ void register_sighandler(void){
  * Return SUCCESS if all tests passed, else FAILURE. The caller should
  * propagate this status code to exit() such that if the test runner
  * failed, the process itself should also exit with an error code.
+ *
+ *
+ * Notes about async signal safety
+ * --------------------------------
+ *
+ * Calling stdio functions from a signal handler is unafe as they are _not_
+ * async-signal safe/reentrant. Calling them after making a non-local
+ * jump with siglongjmp() is exactly the same: they are _not_ safe.
+ * However, we're relying here on this line:
+ *          enum status code = current->testf_ptr();
+ * being the only possible cause of a fatal signal that would trigger the
+ * handler. Adjacent stdio calls made by the test runner before and after
+ * should never generate a fatal signal. I.e. they should never be
+ * interrupted by the signal handler and be left in an inconsistent state.
+ *
+ * So if indeed the program only ever crashes on the aforementioned line (that
+ * is, if an actual test is the only possible cause of a SIGSEGV or SIGBUS), 
+ * then there is nothing to worry about. 
+ * However, on the other hand, if that assumption is not true there's either:
+ * 1) a bug in the code here (because reasonably no calls to stdio should ever
+ * have reason to generate a fatal signal - _in this code here_)
+ * 2) a test that got run corrupted memory to the point where it caused a failure
+ * in a call to a stdio function. This is possible and in this case it would be
+ * unreasonable to even try to recover. The program should abort (although in the
+ * current implementation the signal does get caught and the program does attempt
+ * to keep going).
+ * Do note that a test that gets run could very well corrupt memory by writing out
+ * of bounds and _still_ not generate a SIGSEGV signal!
  */
 enum status Cohort_decimate(struct cohort *testlist){
     if (!testlist->head){
