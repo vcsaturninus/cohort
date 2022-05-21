@@ -1,14 +1,13 @@
-_Updated May 21 2022_
-
 # Cohort - simple C test runner
+
+_Updated May 21 2022_
 
 Very simple test runner written in C. Ideal for calling a number of
 minimal tests in a Makefile-based compilation process as for validating
 a data structure implementation.
 
-## Features
-
 This is an unsophisticated test runner without any bells and whistles.
+
 The user:
  * initializes the test list
  * adds tests to the test list
@@ -16,7 +15,7 @@ The user:
  * frees (destroys) the test list at the end
 
 One nice feature is that tests that generate a fatal signal
-such as SIGBUS or SIGSEGV do _not_ end the program. Instead, they
+such as SIGBUS or SIGSEGV do _not_ end the process. Instead, they
 are caught and the test runner reports the respective test as _failed_
 and then continues on with the rest.
 
@@ -49,3 +48,8 @@ int main(int argc, char **argv){
     exit(status);
 }
 ```
+
+## License
+
+This software is BSD-2 licensed.
+
