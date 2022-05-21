@@ -8,7 +8,7 @@ VALGRIND_REPORT_NAME:=valgrind.txt
 all: clean build_example run_example
 
 build_example:
-	@echo "Building example (any failures or segfaults are on purpose) ..."
+	@echo "Building example ..."
 	@mkdir -p $(OUTDIR)
 	@ $(CC) $(SRC) $(CFLAGS) -o $(OUTDIR)/$(OUTBIN)
 
