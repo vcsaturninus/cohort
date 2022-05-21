@@ -1,3 +1,10 @@
+#include <stdlib.h>
+#include <assert.h>
+#include <stdio.h>
+#include <signal.h>
+#include <stdbool.h>
+#include <setjmp.h>
+
 #include "cohort.h"
 
 
@@ -115,6 +122,9 @@ struct cohort *Cohort_init(void){
     
     // register signal handler
     register_sighandler();
+
+    // disable buffering in stdio lib functions
+    setbuf(stdout, NULL);
 
     return new;
 }

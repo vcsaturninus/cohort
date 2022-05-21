@@ -1,12 +1,7 @@
-#include <stdlib.h>
-#include <assert.h>
-#include <stdio.h>
-#include <signal.h>
-#include <stdbool.h>
-#include <setjmp.h>
-
 #ifndef MOCOHORT_H
 #define MOCOHORT_H
+
+#include <stdlib.h>
 
 /* ****************************************************************************
     ===========================================================================
