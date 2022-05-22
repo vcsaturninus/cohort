@@ -3,6 +3,10 @@
 
 #include <stdlib.h>
 
+/*
+
+*/
+
 /* ****************************************************************************
     ===========================================================================
     --------------------- Cohort - simple C test runner -----------------------
@@ -35,27 +39,38 @@
    * Initialize a 'list' with Cohort_init().
    * Add pointers to test functions to be called to the test list using `Cohort_add()`.
    * Execute all the tests in the list with `Cohort_decimate()`.
-  
-   ### EXAMPLE USAGE:
+   * All the function tests that are to be registered to be called
+     should return 0 (enum status SUCCESS) on success and 1 (enum status FAILURE)
+     on failure.
 
-   ```
-        int main(void){
-   
-        cohort *tests = Cohort_init();
-   
-        Cohort_add(tests, mathtest1, "mathtest1");
-        Cohort_add(tests, segfaultbane, "segbane");
-        Cohort_add(tests, booltest, "booltest");
-        Cohort_add(tests, segmonster, "segmonster");
-        Cohort_add(tests, last_one, "last_test");
-   
-        Cohort_decimate(tests);
-        Cohort_free(tests);  // free memory for each node in list and list itself
-       }
-   ```
- * All the function tests that are to be registered to be called
-   should return 0 (enum status SUCCESS) on success and 1 (enum status FAILURE)
-   on failure.
+   License
+   ----------------------
+
+   BSD 2-Clause License
+
+   Copyright (c) 2022, vcsaturninus <vcsaturninus@protonmail.com>
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are met:
+
+   1. Redistributions of source code must retain the above copyright notice, this
+      list of conditions and the following disclaimer.
+
+   2. Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+   FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+   DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+   SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+   OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    ============================================================================ /
    *****************************************************************************/
 
