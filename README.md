@@ -49,6 +49,23 @@ int main(int argc, char **argv){
 }
 ```
 
+## Example Output
+
+(Run `make` in the cwd to run this example):
+```
+└─$ make
+Building example ...
+Total number of tests: 3
+	! test 1    of 3    !FAILED! | first_example                  |		[* caught deadly signal *]
+	! test 2    of 3    !FAILED! | nutty_example                  |
+	  test 3    of 3    passed.  | third_and_last                 |
+
+	| DONE --> Passed: 1 of 3
+
+make: *** [Makefile:16: run_example] Error 1
+```
+
+
 ## License
 
 This software is BSD-2 licensed.
